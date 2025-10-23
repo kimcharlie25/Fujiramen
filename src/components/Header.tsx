@@ -12,42 +12,51 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
   const { siteSettings, loading } = useSiteSettings();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-ramen-sesame shadow-sm">
+    <header className="sticky top-0 z-50 bg-fuji-black border-b-2 border-fuji-red shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <button 
             onClick={onMenuClick}
-            className="flex items-center space-x-2 text-ramen-dark hover:text-ramen-red transition-colors duration-200"
+            className="flex items-center space-x-3 group"
           >
             {loading ? (
-              <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse" />
+              <div className="w-12 h-12 bg-fuji-darkGray rounded animate-pulse" />
             ) : (
               <img 
                 src={siteSettings?.site_logo || "/logo.jpg"} 
-                alt={siteSettings?.site_name || "Ramen Yard"}
-                className="w-10 h-10 rounded object-cover ring-2 ring-ramen-gold"
+                alt="FujiRamen"
+                className="w-12 h-12 object-cover border-2 border-fuji-gold transition-all duration-300 group-hover:border-fuji-red"
                 onError={(e) => {
                   e.currentTarget.src = "/logo.jpg";
                 }}
               />
             )}
-            <h1 className="text-2xl font-pretendard font-semibold">
-              {loading ? (
-                <div className="w-24 h-6 bg-gray-200 rounded animate-pulse" />
-              ) : (
-                "Ramen Yard"
-              )}
-            </h1>
+            <div className="flex flex-col">
+              <h1 className="text-2xl md:text-3xl font-kanji font-black text-white tracking-wider group-hover:text-fuji-red transition-colors duration-300">
+                {loading ? (
+                  <div className="w-32 h-7 bg-fuji-darkGray rounded animate-pulse" />
+                ) : (
+                  siteSettings?.site_name?.toUpperCase() || "FUJIRAMEN"
+                )}
+              </h1>
+              <p className="text-[10px] md:text-xs font-sans text-fuji-gold tracking-widest uppercase">
+                {loading ? (
+                  <div className="w-24 h-3 bg-fuji-darkGray rounded animate-pulse mt-1" />
+                ) : (
+                  siteSettings?.site_description || "Angeles Branch"
+                )}
+              </p>
+            </div>
           </button>
 
           <div className="flex items-center space-x-2">
             <button 
               onClick={onCartClick}
-              className="relative p-2 text-gray-700 hover:text-black hover:bg-ramen-cream rounded-full transition-all duration-200"
+              className="relative p-3 text-white hover:text-fuji-red hover:bg-fuji-darkGray rounded-lg transition-all duration-300 border border-transparent hover:border-fuji-red"
             >
               <ShoppingCart className="h-6 w-6" />
               {cartItemsCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-ramen-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-bounce-gentle">
+                <span className="absolute -top-1 -right-1 bg-fuji-red text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center animate-bounce-gentle border-2 border-fuji-black">
                   {cartItemsCount}
                 </span>
               )}

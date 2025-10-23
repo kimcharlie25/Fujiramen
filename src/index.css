@@ -2,14 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ramen Yard Custom Styles */
-/* Minimal helpers for ramen palette when needed outside tailwind tokens */
-.bg-ramen-cream { background-color: #FFF3E0; }
-.bg-ramen-beige { background-color: #F7E7CE; }
-.text-ramen-red { color: #D7263D; }
-.text-ramen-dark { color: #0B0A0A; }
-.border-ramen-sesame { border-color: #D1C7B7; }
-.ring-ramen-gold { --tw-ring-color: #E0A106; }
+/* FujiRamen Custom Styles */
+/* The Summit of Flavor - Authentic Japanese Ramen Experience */
+
+@layer base {
+  /* Global styles for FujiRamen brand */
+  body {
+    @apply bg-fuji-black text-white font-sans;
+  }
+  
+  /* Japanese-inspired text rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* FujiRamen color utilities */
+  .bg-fuji-gradient {
+    background: linear-gradient(135deg, #000000 0%, #1A1A1A 100%);
+  }
+  
+  .border-fuji-accent {
+    border-image: linear-gradient(90deg, #C6A470 0%, #FF0000 100%) 1;
+  }
+  
+  /* Text shadow for Japanese aesthetic */
+  .text-shadow-gold {
+    text-shadow: 0 2px 4px rgba(198, 164, 112, 0.3);
+  }
+  
+  .text-shadow-red {
+    text-shadow: 0 2px 4px rgba(255, 0, 0, 0.5);
+  }
+  
+  /* Scrollbar styling for FujiRamen brand */
+  .scrollbar-fuji::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-fuji::-webkit-scrollbar-track {
+    background: #1A1A1A;
+  }
+  
+  .scrollbar-fuji::-webkit-scrollbar-thumb {
+    background: #C6A470;
+    border-radius: 0;
+  }
+  
+  .scrollbar-fuji::-webkit-scrollbar-thumb:hover {
+    background: #FF0000;
+  }
+}
 
 /* Hide scrollbar for mobile nav */
 .scrollbar-hide {
@@ -27,12 +73,57 @@ img {
   image-rendering: crisp-edges;
 }
 
-/* Preload critical images */
-.preload-image {
+/* Legacy ramen colors for admin compatibility */
+.bg-ramen-cream { background-color: #F5F5F5; }
+.bg-ramen-beige { background-color: #D4B896; }
+.text-ramen-red { color: #FF0000; }
+.text-ramen-dark { color: #000000; }
+.border-ramen-sesame { border-color: #D1C7B7; }
+.ring-ramen-gold { --tw-ring-color: #C6A470; }
+
+/* Custom selection colors for FujiRamen */
+::selection {
+  background-color: #FF0000;
+  color: #FFFFFF;
+}
+
+::-moz-selection {
+  background-color: #FF0000;
+  color: #FFFFFF;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid #C6A470;
+  outline-offset: 2px;
+}
+
+/* Custom animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #000000 0%, #C6A470 50%, #000000 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Wood texture overlay for authentic feel */
+.wood-texture-overlay {
+  position: relative;
+}
+
+.wood-texture-overlay::before {
   content: '';
   position: absolute;
-  left: -9999px;
-  top: -9999px;
-  width: 1px;
-  height: 1px;
+  inset: 0;
+  background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23noise)" opacity="0.05" /%3E%3C/svg%3E');
+  pointer-events: none;
+  opacity: 0.15;
 }

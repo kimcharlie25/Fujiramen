@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useCart } from './hooks/useCart';
+import { useSiteSettings } from './hooks/useSiteSettings';
 import Header from './components/Header';
 import SubNav from './components/SubNav';
 import Menu from './components/Menu';
@@ -13,8 +14,16 @@ import { useMenu } from './hooks/useMenu';
 function MainApp() {
   const cart = useCart();
   const { menuItems } = useMenu();
+  const { siteSettings } = useSiteSettings();
   const [currentView, setCurrentView] = React.useState<'menu' | 'cart' | 'checkout'>('menu');
   const [selectedCategory, setSelectedCategory] = React.useState<string>('all');
+
+  // Update document title when site settings change
+  React.useEffect(() => {
+    if (siteSettings?.site_name) {
+      document.title = `${siteSettings.site_name} — ${siteSettings.site_description || 'The Summit of Flavor'}`;
+    }
+  }, [siteSettings]);
 
   const handleViewChange = (view: 'menu' | 'cart' | 'checkout') => {
     setCurrentView(view);
@@ -64,13 +73,6 @@ function MainApp() {
           cartItems={cart.cartItems}
           totalPrice={cart.getTotalPrice()}
           onBack={() => handleViewChange('cart')}
-        />
-      )}
-      
-      {currentView === 'menu' && (
-        <FloatingCartButton 
-          itemCount={cart.getTotalItems()}
-          onCartClick={() => handleViewChange('cart')}
         />
       )}
     </div>

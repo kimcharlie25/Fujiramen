@@ -90,13 +90,13 @@ const SiteSettingsManager: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl shadow-sm p-6">
+      <div className="bg-fuji-darkGray border-2 border-fuji-gold p-8">
         <div className="animate-pulse">
-          <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+          <div className="h-8 bg-fuji-black rounded w-1/4 mb-6"></div>
           <div className="space-y-4">
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-            <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+            <div className="h-4 bg-fuji-black rounded w-3/4"></div>
+            <div className="h-4 bg-fuji-black rounded w-1/2"></div>
+            <div className="h-4 bg-fuji-black rounded w-2/3"></div>
           </div>
         </div>
       </div>
@@ -104,22 +104,22 @@ const SiteSettingsManager: React.FC = () => {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-noto font-semibold text-black">Site Settings</h2>
+    <div className="bg-fuji-darkGray border-2 border-fuji-gold p-8">
+      <div className="flex items-center justify-between mb-8 pb-4 border-b-2 border-fuji-red">
+        <h2 className="text-3xl font-kanji font-black text-white uppercase tracking-wider">Site Settings</h2>
         {!isEditing ? (
           <button
             onClick={() => setIsEditing(true)}
-            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center space-x-2"
+            className="bg-fuji-red text-white px-6 py-3 border-2 border-white hover:bg-white hover:text-fuji-red transition-all duration-300 flex items-center space-x-2 font-sans font-bold uppercase tracking-wider"
           >
             <Save className="h-4 w-4" />
             <span>Edit Settings</span>
           </button>
         ) : (
-          <div className="flex space-x-2">
+          <div className="flex space-x-3">
             <button
               onClick={handleCancel}
-              className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-200 flex items-center space-x-2"
+              className="bg-fuji-black text-fuji-gold px-6 py-3 border-2 border-fuji-gold hover:bg-fuji-gold hover:text-fuji-black transition-all duration-300 flex items-center space-x-2 font-sans font-bold uppercase tracking-wider"
             >
               <X className="h-4 w-4" />
               <span>Cancel</span>
@@ -127,7 +127,7 @@ const SiteSettingsManager: React.FC = () => {
             <button
               onClick={handleSave}
               disabled={uploading}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center space-x-2 disabled:opacity-50"
+              className="bg-fuji-red text-white px-6 py-3 border-2 border-white hover:bg-white hover:text-fuji-red transition-all duration-300 flex items-center space-x-2 font-sans font-bold uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Save className="h-4 w-4" />
               <span>{uploading ? 'Saving...' : 'Save Changes'}</span>
@@ -136,14 +136,14 @@ const SiteSettingsManager: React.FC = () => {
         )}
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         {/* Site Logo */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-sans font-medium text-fuji-gold mb-3 uppercase tracking-wide">
             Site Logo
           </label>
-          <div className="flex items-center space-x-4">
-            <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+          <div className="flex items-center space-x-6">
+            <div className="w-20 h-20 border-2 border-fuji-gold overflow-hidden bg-fuji-black flex items-center justify-center">
               {logoPreview ? (
                 <img
                   src={logoPreview}
@@ -151,7 +151,7 @@ const SiteSettingsManager: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="text-2xl text-gray-400">☕</div>
+                <div className="text-3xl text-fuji-gold">🍜</div>
               )}
             </div>
             {isEditing && (
@@ -165,7 +165,7 @@ const SiteSettingsManager: React.FC = () => {
                 />
                 <label
                   htmlFor="logo-upload"
-                  className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors duration-200 flex items-center space-x-2 cursor-pointer"
+                  className="bg-fuji-black text-fuji-gold px-6 py-3 border-2 border-fuji-gold hover:bg-fuji-gold hover:text-fuji-black transition-all duration-300 flex items-center space-x-2 cursor-pointer font-sans font-bold uppercase tracking-wider"
                 >
                   <Upload className="h-4 w-4" />
                   <span>Upload Logo</span>
@@ -177,8 +177,8 @@ const SiteSettingsManager: React.FC = () => {
 
         {/* Site Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Site Name
+          <label className="block text-sm font-sans font-medium text-fuji-gold mb-3 uppercase tracking-wide">
+            Business Name
           </label>
           {isEditing ? (
             <input
@@ -186,18 +186,18 @@ const SiteSettingsManager: React.FC = () => {
               name="site_name"
               value={formData.site_name}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-              placeholder="Enter site name"
+              className="w-full px-4 py-3 bg-fuji-black border-2 border-fuji-gold/50 text-white focus:ring-2 focus:ring-fuji-red focus:border-fuji-red transition-all duration-300 font-sans"
+              placeholder="Enter business name"
             />
           ) : (
-            <p className="text-lg font-medium text-black">{siteSettings?.site_name}</p>
+            <p className="text-xl font-kanji font-bold text-white">{siteSettings?.site_name}</p>
           )}
         </div>
 
         {/* Site Description */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Site Description
+          <label className="block text-sm font-sans font-medium text-fuji-gold mb-3 uppercase tracking-wide">
+            Business Description / Tagline
           </label>
           {isEditing ? (
             <textarea
@@ -205,18 +205,18 @@ const SiteSettingsManager: React.FC = () => {
               value={formData.site_description}
               onChange={handleInputChange}
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-              placeholder="Enter site description"
+              className="w-full px-4 py-3 bg-fuji-black border-2 border-fuji-gold/50 text-white focus:ring-2 focus:ring-fuji-red focus:border-fuji-red transition-all duration-300 font-sans"
+              placeholder="Enter business description or tagline"
             />
           ) : (
-            <p className="text-gray-600">{siteSettings?.site_description}</p>
+            <p className="text-fuji-gold font-sans">{siteSettings?.site_description}</p>
           )}
         </div>
 
         {/* Currency Settings */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-sans font-medium text-fuji-gold mb-3 uppercase tracking-wide">
               Currency Symbol
             </label>
             {isEditing ? (
@@ -225,15 +225,15 @@ const SiteSettingsManager: React.FC = () => {
                 name="currency"
                 value={formData.currency}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full px-4 py-3 bg-fuji-black border-2 border-fuji-gold/50 text-white focus:ring-2 focus:ring-fuji-red focus:border-fuji-red transition-all duration-300 font-sans"
                 placeholder="e.g., ₱, $, €"
               />
             ) : (
-              <p className="text-lg font-medium text-black">{siteSettings?.currency}</p>
+              <p className="text-xl font-kanji font-bold text-white">{siteSettings?.currency}</p>
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-sans font-medium text-fuji-gold mb-3 uppercase tracking-wide">
               Currency Code
             </label>
             {isEditing ? (
@@ -242,11 +242,11 @@ const SiteSettingsManager: React.FC = () => {
                 name="currency_code"
                 value={formData.currency_code}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full px-4 py-3 bg-fuji-black border-2 border-fuji-gold/50 text-white focus:ring-2 focus:ring-fuji-red focus:border-fuji-red transition-all duration-300 font-sans"
                 placeholder="e.g., PHP, USD, EUR"
               />
             ) : (
-              <p className="text-lg font-medium text-black">{siteSettings?.currency_code}</p>
+              <p className="text-xl font-kanji font-bold text-white">{siteSettings?.currency_code}</p>
             )}
           </div>
         </div>
