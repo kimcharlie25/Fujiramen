@@ -99,7 +99,7 @@ Please confirm this order to proceed. Thank you for choosing FUJIRAMEN!
     `.trim();
 
     const encodedMessage = encodeURIComponent(orderDetails);
-    const messengerUrl = `https://m.me/fujiramenangelesbranch?text=${encodedMessage}`;
+    const messengerUrl = `https://m.me/Fujiramenrestaurant?text=${encodedMessage}`;
     
     window.open(messengerUrl, '_blank');
     
